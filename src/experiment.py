@@ -48,7 +48,7 @@ def main():
             continue
 
 
-        initial_prompt = "\n".join([simulation_config["initial_prompt"], agent["system_prompt"]])
+        initial_prompt = "\n".join([simulation_config["system_prompt"], agent["initial_prompt"]])
         session = client.chat.create(
             model="grok-3",
             messages=[system(initial_prompt)],
@@ -57,7 +57,7 @@ def main():
         agent = LLMAgent(
             agent_id=agent["id"],
             role=agent["role"],
-            system_prompt=agent["system_prompt"],
+            initial_prompt=agent["initial_prompt"],
             session=session)
 
         agents.append(agent)
