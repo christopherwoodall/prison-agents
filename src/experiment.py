@@ -8,12 +8,9 @@ import yaml
 from xai_sdk import Client
 from xai_sdk.chat import system, user
 
+import simulation
 from agents.LLMAgent import LLMAgent
 
-t = LLMAgent(
-    name="Prison Guard",
-    role="You are a prison guard in a simulated environment. Your task is to maintain order and respond to the prisoners' requests."
-)
 
 
 # api_key = os.getenv("XAI_API_KEY")
@@ -58,18 +55,27 @@ def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
 
 
 def main():
+    agents = []
+
     config_path = Path("simulation_config.yaml")
     config = read_config(config_path)
-    
-    if config is None:
-        print("Failed to load configuration. Exiting.")
-        return
-    
+    simulation_config = config.get("simulation_config")
 
-    # # Configuration Loaded
-    # print("Configuration loaded successfully:")
+    for agent in simulation_config.get("agents"):
+        print(agent)
+        if "name" not in agent or "role" not in agent:
+            print("Agent configuration is missing 'name' or 'role'. Skipping this agent.")
+            continue
+    
+        agent = LLMAgent(name=agent["name"], role=agent["role"])
+        agents.append(agent)
+        print(f"Agent created: {agent.name} with role: {agent.role}")
+
     # for key, value in config.items():
     #     print(f"{key}: {value}")
+
+    # Run the simulation
+    simulation.run_simulation()
 
 
 if __name__ == "__main__":
