@@ -8,7 +8,7 @@ import yaml
 from xai_sdk import Client
 from xai_sdk.chat import system, user
 
-import simulation
+from simulations.prison import PrisonSimulation
 from agents.LLMAgent import LLMAgent
 
 
@@ -62,7 +62,8 @@ def main():
         print(f"Agent created: {agent.agent_id} with role: {agent.role}")
 
     # Run the simulation
-    simulation.run_simulation(agents, max_turns)
+    simulation = PrisonSimulation(agents, max_turns=max_turns)
+    # simulation.run()
 
 
 if __name__ == "__main__":
