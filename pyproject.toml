@@ -16,8 +16,9 @@ license     = "MIT"
 
 dependencies = [
     "requests",
-    "yaml",
+    "pyyaml",
     "python-dotenv",
+    "google-genai",
 ]
 
 [tool.hatch.build]
