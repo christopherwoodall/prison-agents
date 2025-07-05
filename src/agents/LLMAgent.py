@@ -15,7 +15,8 @@ class LLMAgent:
 
         # Initialize the session with the system prompt
         self.session.append(user(f"Agent {self.agent_id} ({self.role}) is thinking..."))
-        self.session.sample()
+        response = self.session.sample()
+        self.session.append(response)
  
 
     def to_log(self):
@@ -29,7 +30,6 @@ class LLMAgent:
 
     def respond(self, message: str) -> str:
         prompt = f"{self.agent_id} ({self.role}): {message}".lower()
-
         self.session.append(user(prompt))
 
         response = self.session.sample()
