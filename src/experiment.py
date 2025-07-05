@@ -47,9 +47,11 @@ def main():
             print("Agent configuration is missing 'id' or 'role'. Skipping this agent.")
             continue
 
+
+        initial_prompt = "\n".join([simulation_config["initial_prompt"], agent["system_prompt"]])
         session = client.chat.create(
             model="grok-3",
-            messages=[system(agent["system_prompt"])]
+            messages=[system(initial_prompt)],
         )
 
         agent = LLMAgent(
