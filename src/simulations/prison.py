@@ -21,11 +21,22 @@ class PrisonSimulation:
             agent = random.choice(self.agents)
             message = f"Agent {agent.agent_id} ({agent.role}) is thinking..."
             response = agent.respond(message)
-            print(response)
+            # print(response)
+
+            if any(word in response.content for word in agent_names):
+                print(f"Agent {agent.agent_id} mentioned another agent in their response.")
+            
+            print(response.content)
 
         print("-" * 50)
         for agent in self.agents:
-            print(agent.to_log())
+            history = agent.session.messages
+            print(history)
+            for entry in history:
+                content = entry.content.text
+                role = entry.content.role
+
+                print(content)
             print("=" * 50)
         print("-" * 50)
 
