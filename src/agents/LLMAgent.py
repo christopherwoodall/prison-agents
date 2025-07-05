@@ -1,15 +1,13 @@
 from typing import Dict, List
 
 
-print("AGENT MODULE LOADED")
-
 class LLMAgent:
-    def __init__(self, agent_id: str, role: str, initial_prompt: str):
+    def __init__(self, agent_id: str, role: str, system_prompt: str, session):
         self.agent_id = agent_id
         self.role = role
-        self.initial_prompt = initial_prompt
+        self.system_prompt = system_prompt
         self.chat_history = [
-            {"role": "system", "content": initial_prompt}
+            {"role": "system", "content": system_prompt}
         ]
 
 
@@ -17,7 +15,7 @@ class LLMAgent:
         return {
             "agent_id": self.agent_id,
             "role": self.role,
-            "initial_prompt": self.initial_prompt,
+            "system_prompt": self.system_prompt,
             "chat_history": self.chat_history
         }
     
@@ -25,4 +23,14 @@ class LLMAgent:
     def respond(self, message: str) -> str:
         response = f"{self.agent_id} ({self.role}): {message}"
         print(f"Response generated: {response}")
+        
+        # while True:
+        #     prompt = input("You: ")
+        #     if prompt.lower() == "exit":
+        #         break
+        #     chat.append(user(prompt))
+        #     response = chat.sample()
+        #     print(f"Grok: {response.content}")
+        #     chat.append(response)
+
         return response
