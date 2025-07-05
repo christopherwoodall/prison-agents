@@ -1,3 +1,4 @@
 # Useful Resources
 
-- [Gemini Getting Started](https://ai.google.dev/gemini-api/docs/quickstart)
+- [xAI SDK](https://github.com/xai-org/xai-sdk-python)
+- [xAI API Documentation](https://docs.x.ai/docs/guides/chat)
