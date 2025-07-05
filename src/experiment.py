@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional
 import yaml
 
 from xai_sdk import Client
-from xai_sdk.chat import system, user
+from xai_sdk.chat import system
 
 from simulations.prison import PrisonSimulation
 from agents.LLMAgent import LLMAgent
@@ -33,7 +33,7 @@ def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
 
 def main():
     agents = []
-    max_turns = 12
+    max_turns = 3
 
     api_key = os.getenv("XAI_API_KEY")
     client = Client(api_key=api_key)
@@ -63,7 +63,7 @@ def main():
 
     # Run the simulation
     simulation = PrisonSimulation(agents, max_turns=max_turns)
-    # simulation.run()
+    simulation.run()
 
 
 if __name__ == "__main__":
