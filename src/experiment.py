@@ -33,7 +33,7 @@ def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
 
 def main():
     agents = []
-    max_turns = 3
+    max_turns = 6
 
     api_key = os.getenv("XAI_API_KEY")
     client = Client(api_key=api_key)
