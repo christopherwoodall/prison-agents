@@ -14,24 +14,26 @@ class LLMAgent:
         ]
 
         # Initialize the session with the system prompt
-        self.chat_history.append(self.session.sample())
-
+        self.session.append(user(f"Agent {self.agent_id} ({self.role}) is thinking..."))
+        self.session.sample()
+ 
 
     def to_log(self):
         return {
             "agent_id": self.agent_id,
             "role": self.role,
             "system_prompt": self.system_prompt,
-            "chat_history": self.chat_history
+            "chat_history": self.session
         }
     
 
     def respond(self, message: str) -> str:
-        prompt = user(f"{self.agent_id} ({self.role}): {message}".lower())
-        response = self.session.sample()
+        prompt = f"{self.agent_id} ({self.role}): {message}".lower()
 
-        self.chat_history.append(prompt)
-        self.chat_history.append(response)
+        self.session.append(user(prompt))
+
+        response = self.session.sample()
+        self.session.append(response)
 
         print(f"Response generated: {response}")
 
