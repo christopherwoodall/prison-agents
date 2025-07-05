@@ -14,6 +14,8 @@ class PrisonSimulation:
 
 
     def run(self):
+        # TODO: Change tick to a more sophisticated mechanism, e.g., time-based or event-based
+
         agent_names = [agent.agent_id for agent in self.agents]
 
         print("Starting simulation...")
@@ -31,12 +33,9 @@ class PrisonSimulation:
         print("-" * 50)
         for agent in self.agents:
             history = agent.session.messages
-            print(history)
             for entry in history:
-                content = entry.content.text
-                role = entry.content.role
-
-                print(content)
+                content = entry.content[0].text
+                print(content)                
             print("=" * 50)
         print("-" * 50)
 
