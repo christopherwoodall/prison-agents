@@ -35,6 +35,4 @@ class LLMAgent:
         response = self.session.sample()
         self.session.append(response)
 
-        print(f"Response generated: {response}")
-
         return response
