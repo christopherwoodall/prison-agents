@@ -7,6 +7,9 @@ class PrisonSimulation:
         self.max_turns = max_turns
         self.chat_history = []
 
+        self.agent_dict = {agent.agent_id: agent for agent in agents}
+        # TODO: Make it so that agents can address each other by name
+
         print(f"PrisonSimulation initialized with {len(agents)} agents and max turns: {max_turns}")
 
 
@@ -30,4 +33,5 @@ class PrisonSimulation:
 
 
     def to_log(self):
+        # TODO: Combined log of all agents/interactions as time series.
         ...
