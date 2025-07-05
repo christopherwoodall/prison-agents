@@ -11,6 +11,8 @@ class PrisonSimulation:
 
 
     def run(self):
+        agent_names = [agent.agent_id for agent in self.agents]
+
         print("Starting simulation...")
         for turn in range(self.max_turns):
             agent = random.choice(self.agents)
