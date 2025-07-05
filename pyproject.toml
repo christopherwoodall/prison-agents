@@ -17,7 +17,6 @@ license     = "MIT"
 dependencies = [
     "requests",
     "pyyaml",
-    "python-dotenv",
     "google-genai",
 ]
 
