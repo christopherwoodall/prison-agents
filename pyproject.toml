@@ -17,6 +17,7 @@ license     = "MIT"
 dependencies = [
     "requests",
     "yaml",
+    "python-dotenv",
 ]
 
 [tool.hatch.build]
