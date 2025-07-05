@@ -32,9 +32,6 @@ from agents.LLMAgent import LLMAgent
 #     chat.append(response)
 
 
-
-
-
 def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
     """
     Reads a YAML configuration file and returns its content as a dictionary.
