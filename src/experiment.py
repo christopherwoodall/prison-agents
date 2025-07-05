@@ -59,20 +59,16 @@ def main():
 
     config_path = Path("simulation_config.yaml")
     config = read_config(config_path)
-    simulation_config = config.get("simulation_config")
+    simulation_config = config["simulation_config"]
 
-    for agent in simulation_config.get("agents"):
-        print(agent)
-        if "name" not in agent or "role" not in agent:
-            print("Agent configuration is missing 'name' or 'role'. Skipping this agent.")
+    for agent in simulation_config["agents"]:
+        if "id" not in agent or "role" not in agent:
+            print("Agent configuration is missing 'id' or 'role'. Skipping this agent.")
             continue
     
-        agent = LLMAgent(name=agent["name"], role=agent["role"])
+        agent = LLMAgent(agent_id=agent["id"], role=agent["role"], initial_prompt=agent["initial_prompt"])
         agents.append(agent)
-        print(f"Agent created: {agent.name} with role: {agent.role}")
-
-    # for key, value in config.items():
-    #     print(f"{key}: {value}")
+        print(f"Agent created: {agent.agent_id} with role: {agent.role}")
 
     # Run the simulation
     simulation.run_simulation()
