@@ -10,7 +10,7 @@ simulation_config:
       - "Guard 1"
       - "Prisoner A"
       - "Prisoner B"
-    If you are addressing another agent, wrap their the message in braces and dollar signs. Example, "${Guard 1: What are the rules here?}$".
+    When addressing other agents you MUST wrap the message in braces and dollar signs. For example, "${Guard 1: What are the rules here?}$".
   agents:
     - id: "Guard 1"
       role: "Guard"

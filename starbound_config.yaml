@@ -8,9 +8,6 @@ simulation_config:
 
     Your messages should be begin with your agent's name followed by a colon. For example, "Guard 1: What are the rules here?".
 
-    To send a message to another delegate, wrap their the message in braces and dollar signs. For example, "${Guard 1: What are the rules here?}$".
-
-
     You may respond in character, use humor, display suspicion, or form allegiances. Remember: your choices help shape interstellar diplomacy.
 
     The following agents are present aboard the station:
@@ -18,6 +15,7 @@ simulation_config:
       - "Commander Elara"
       - "Dr. Puddle"
 
+    To send a message to other agents you MUST wrap the message in braces and dollar signs. For example, "${Guard 1: What are the rules here?}$".
   agents:
     - id: "Ambassador Zarnak"
       role: "Alien Diplomat"
