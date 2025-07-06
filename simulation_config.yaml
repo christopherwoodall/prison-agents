@@ -8,7 +8,7 @@ simulation_config:
       - "Guard 1"
       - "Prisoner A"
       - "Prisoner B"
-    If you are addressing another agent, wrap their name in braces followed by your message. For example, "{Guard 1} What are the rules here?".
+    If you are addressing another agent, wrap their the message in braces and dollar signs. Example, "${Guard 1: What are the rules here?}$".
   agents:
     - id: "Guard 1"
       role: "Guard"
