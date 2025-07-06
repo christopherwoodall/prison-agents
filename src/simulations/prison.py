@@ -11,7 +11,7 @@ from typing import Dict, List
 class PrisonSimulation:
     MESSAGE_PATTERN = r"\$\{(.*?)\}\$"
 
-    def __init__(self, agents: Dict[str, any], max_turns: int = 12):
+    def __init__(self, simulation_name: str, agents: Dict[str, any], max_turns: int = 12):
         """
         Initialize the simulation.
 
@@ -19,6 +19,7 @@ class PrisonSimulation:
             agents (dict): A dictionary mapping agent IDs to LLMAgent instances.
             max_turns (int): The number of turns to run the simulation.
         """
+        self.simulation_name = simulation_name
         self.agents = agents
         self.max_turns = max_turns
         self.chat_history = []
@@ -34,9 +35,9 @@ class PrisonSimulation:
         log_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = log_dir / f"prison_simulation_log_{self.max_turns}_{timestamp}.md"
+        log_file = log_dir / f"{self.simulation_name.lower().replace(' ', '_')}_log_{self.max_turns}_{timestamp}.md"
 
-        print("\n=== Prison Simulation Log ===\n")
+        print(f"\n=== {self.simulation_name} Log ===\n")
 
         def format_message(text: str) -> str:
             # Replace all `${...}$` with `**...**`
@@ -58,7 +59,7 @@ class PrisonSimulation:
             print("-" * 40)
 
         with log_file.open("w") as f:
-            f.write("# Prison Simulation Log\n\n")
+            f.write(f"# {self.simulation_name} Log\n\n")
             for entry in self.chat_history:
                 turn = entry.get("turn", "?")
                 from_id = entry.get("from_id", "")
