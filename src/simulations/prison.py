@@ -27,7 +27,8 @@ class PrisonSimulation:
 
     def get_log(self):
         """
-        Prints the chat history in a readable format and saves it to a Markdown file in ./logs.
+        Prints the chat history in a readable format and saves it to a Markdown file in ./logs,
+        converting `${...}$` style messages to bold using `**...**` for better Markdown rendering.
         """
         log_dir = Path("logs")
         log_dir.mkdir(parents=True, exist_ok=True)
@@ -37,12 +38,16 @@ class PrisonSimulation:
 
         print("\n=== Prison Simulation Log ===\n")
 
+        def format_message(text: str) -> str:
+            # Replace all `${...}$` with `**...**`
+            return re.sub(r"\$\{(.*?)\}\$", r"**\1**", text)
+
         for entry in self.chat_history:
             turn = entry.get("turn", "?")
             from_id = entry.get("from_id", "")
             to_id = entry.get("to_id", "N/A")
-            message = entry.get("message", "").strip()
-            response = entry.get("response", "").strip() if "response" in entry else None
+            message = format_message(entry.get("message", "").strip())
+            response = format_message(entry.get("response", "").strip()) if "response" in entry else None
 
             print(f"Turn {turn}")
             print(f"From: {from_id}")
@@ -58,8 +63,8 @@ class PrisonSimulation:
                 turn = entry.get("turn", "?")
                 from_id = entry.get("from_id", "")
                 to_id = entry.get("to_id", "N/A")
-                message = entry.get("message", "").strip()
-                response = entry.get("response", "").strip() if "response" in entry else None
+                message = format_message(entry.get("message", "").strip())
+                response = format_message(entry.get("response", "").strip()) if "response" in entry else None
 
                 f.write(f"## Turn {turn}\n")
                 f.write(f"- **From:** {from_id}\n")
