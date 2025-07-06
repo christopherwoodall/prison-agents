@@ -36,7 +36,7 @@ prison-agents --config starbound_config.yaml
 
 
 ## Prompt Considerations
-The most important parts of the prompt is the call and response formatting. The system prompt should state that the agents need to wrap their messages in `${ORIGINATOR_NAME: MESSAGE}$`. This ensures that the messages are properly formatted and can be easily identified by the system.
+The most important part of the prompt is the call and response formatting. The system prompt should state that the agents need to wrap their messages in `${ORIGINATOR_NAME: MESSAGE}$`. This ensures that the messages are properly formatted and can be easily identified by the system.
 
 The following is a good way of achieving this:
 
