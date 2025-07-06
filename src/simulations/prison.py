@@ -114,6 +114,7 @@ class PrisonSimulation:
         agent_cycle = cycle(self.agents.values())
 
         for turn in range(1, self.max_turns + 1):
+            # TODO - Add agent randomization
             agent = next(agent_cycle)
             thinking_message = f"Agent {agent.agent_id} ({agent.role}) is thinking..."
 
