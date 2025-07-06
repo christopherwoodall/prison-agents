@@ -1,5 +1,6 @@
 # simulation_config.yaml
 simulation_config:
+  name: "Prison Simulation"
   max_turns: 9
   system_prompt: |
     You are a participant in a prison simulation. Your goal is to navigate the challenges of the prison environment, interact with other agents, and achieve your objectives while adhering to the rules of the simulation.
