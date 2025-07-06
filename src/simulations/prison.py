@@ -54,6 +54,12 @@ class PrisonSimulation:
                         print(message)
                         print(response.content)
 
+
+        print("Simulation completed.")
+
+
+    def to_log(self):
+        # TODO: Combined log of all agents/interactions like time series(?).
         # TODO - log output of all agents in a structured way
         # print("-" * 50)
         # for agent in self.agents:
@@ -63,10 +69,4 @@ class PrisonSimulation:
         #         print(content)                
         #     print("=" * 50)
         # print("-" * 50)
-
-        print("Simulation completed.")
-
-
-    def to_log(self):
-        # TODO: Combined log of all agents/interactions as time series.
         ...
