@@ -29,7 +29,7 @@ class LLMAgent:
     
 
     def respond(self, message: str) -> str:
-        prompt = f"{self.agent_id} ({self.role}): {message}".lower()
+        prompt = f"{self.agent_id} ({self.role}): {message}"
         self.session.append(user(prompt))
 
         response = self.session.sample()
