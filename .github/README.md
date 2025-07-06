@@ -26,4 +26,10 @@ for i in {1..9}; do prison-agents & done; wait
 ```
 
 ## Configuration
-You can configure the simulation by editing the `config.yaml` file. The default configuration is set to run the simulation for 3 turns with 2 guards and 2 prisoners. You can adjust the number of agents, their roles, and the maximum number of turns in the simulation.
+You can configure the simulation by editing the `simulation_config.yaml` file. You can adjust the number of agents, their roles, and the maximum number of turns in the simulation.
+
+To run a simulation with a custom configuration, use the following command:
+
+```bash
+prison-agents --config starbound_config.yaml
+```
