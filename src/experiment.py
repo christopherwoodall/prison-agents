@@ -37,6 +37,7 @@ def run_simulation(config_path: Path):
     simulation_config = config["simulation_config"]
 
     agents = {}
+    simulation_name = simulation_config["name"]
     max_turns = simulation_config["max_turns"]
 
     for agent in simulation_config.get("agents", []):
@@ -59,7 +60,7 @@ def run_simulation(config_path: Path):
 
         print(f"[Info] Agent created: {agent['id']} ({agent['role']})")
 
-    simulation = PrisonSimulation(agents, max_turns=max_turns)
+    simulation = PrisonSimulation(simulation_name, agents, max_turns=max_turns)
     simulation.run()
 
 
