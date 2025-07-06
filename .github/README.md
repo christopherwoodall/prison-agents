@@ -12,6 +12,8 @@ You can also find past chat logs in the [logs directory](https://github.com/chri
 [Set the enviromental variable](https://ai.google.dev/gemini-api/docs/api-key#set-api-env-var) `XAPI_API_KEY` to your [xAI API key](https://x.ai/api).
 
 ```bash
+export XAPI_API_KEY=xai-SDAGFAGHJAEOGJwTHISISAFAKEAPIKEYi342342342lASDFSgITSNOTREALdNFASFAWSEF23asdDAFsA
+
 git clone https://github.com/christopherwoodall/prison-agents.git
 cd prison-agents
 pip install -e .
