@@ -34,7 +34,7 @@ class PrisonSimulation:
         log_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = log_dir / f"prison_simulation_log_{timestamp}.md"
+        log_file = log_dir / f"prison_simulation_log_{self.max_turns}_{timestamp}.md"
 
         print("\n=== Prison Simulation Log ===\n")
 
