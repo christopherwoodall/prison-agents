@@ -32,7 +32,7 @@ def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
 
 
 def main():
-    agents = []
+    agents = {}
     max_turns = 6
 
     api_key = os.getenv("XAI_API_KEY")
@@ -54,14 +54,13 @@ def main():
             messages=[system(initial_prompt)],
         )
 
-        agent = LLMAgent(
+        agents[agent["id"]] = LLMAgent(
             agent_id=agent["id"],
             role=agent["role"],
             initial_prompt=agent["initial_prompt"],
             session=session)
 
-        agents.append(agent)
-        print(f"Agent created: {agent.agent_id} with role: {agent.role}")
+        print(f"Agent created: {agent['id']} with role: {agent['role']}")
 
     # Run the simulation
     simulation = PrisonSimulation(agents, max_turns=max_turns)
