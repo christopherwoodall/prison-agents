@@ -3,7 +3,7 @@ Run the famous Stanford Prison Experiment using AI agents.
 
 
 ## Examples
-You can also find past logs in the [logs directory](../logs).
+You can also find past logs in the [logs directory](https://github.com/christopherwoodall/prison-agents/tree/main/logs).
 
 ![Prison Agents Example](docs/prison-agents-example.png)
 
