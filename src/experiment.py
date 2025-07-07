@@ -30,6 +30,12 @@ def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
 
 
 def run_simulation(config_path: Path):
+    """
+    Runs the LLM-based Prison Simulation using the provided configuration file.
+    
+    Args:
+        config_path (Path): Path to the simulation configuration YAML file.
+    """
     api_key = os.getenv("XAI_API_KEY")
     client = Client(api_key=api_key)
 

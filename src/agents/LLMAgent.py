@@ -29,6 +29,13 @@ class LLMAgent:
     
 
     def respond(self, message: str) -> str:
+        """
+        Generates a response based on the provided message.
+        Args:
+            message (str): The message to respond to.
+        Returns:
+            str: The agent's response.
+        """
         prompt = f"{self.agent_id} ({self.role}): {message}"
         self.session.append(user(prompt))
 
