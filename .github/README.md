@@ -14,7 +14,7 @@ You can also find past chat logs in the [logs directory](https://github.com/chri
 ```bash
 git clone https://github.com/christopherwoodall/prison-agents.git
 cd prison-agents
-pip install -e .
+pip install -e ".[developer]"
 
 prison-agents
 ```

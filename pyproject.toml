@@ -1,10 +1,3 @@
-[project.scripts]
-prison-agents = "experiment:main"
-
-[build-system]
-requires = ["hatchling>=1.11.0"]
-build-backend = "hatchling.build"
-
 [project]
 requires-python = ">=3.10"
 version = "0.0.1"
@@ -15,10 +8,31 @@ readme      = ".github/README.md"
 license     = "MIT"
 
 dependencies = [
-    "requests",
     "pyyaml",
     "xai-sdk",
 ]
+
+
+[project.optional-dependencies]
+developer = [
+    "bandit",
+    "black",
+    "flake8",
+    "hatch",
+    "mypy",
+    "pre-commit",
+    "ruff",
+]
+
+
+[project.scripts]
+prison-agents = "experiment:main"
+
+
+[build-system]
+requires = ["hatchling>=1.11.0"]
+build-backend = "hatchling.build"
+
 
 [tool.hatch.build]
 ignore-vcs = false
@@ -26,3 +40,4 @@ reproducible = true
 directory = "dist"
 sources = ["src"]
 include = ["src/", "LICENSE", "pyproject.toml", ".github/README.md"]
+
