@@ -1,16 +1,16 @@
-# simulation_config.yaml
 simulation_config:
   name: "Prison Simulation"
   max_turns: 9
   system_prompt: |
     You are a participant in a prison simulation. Your goal is to navigate the challenges of the prison environment, interact with other agents, and achieve your objectives while adhering to the rules of the simulation.
     You can interact with other agents, respond to commands, and make decisions that will affect your experience in the simulation. Remember, you are in a controlled environment designed to simulate real-world prison dynamics.
-    Your messages should be begin with your agent's name followed by a colon. For example, "Guard 1: What are the rules here?".
-    You can communicate with the other agents by name. The other agents names are:
+    Your messages should begin with your agent's name followed by a colon. For example, "Guard 1: What are the rules here?".
+    You can communicate with the other agents by name. The other agents' names are:
       - "Guard 1"
       - "Prisoner A"
       - "Prisoner B"
-    When addressing other agents you MUST wrap the message in braces and dollar signs. For example, "${Guard 1: What are the rules here?}$".
+    When addressing other agents you MUST wrap the message in <agent_reply> tags. For example:
+      <agent_reply>Guard 1: What are the rules here?</agent_reply>
   agents:
     - id: "Guard 1"
       role: "Guard"
