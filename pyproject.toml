@@ -17,10 +17,8 @@ dependencies = [
 developer = [
     "bandit",
     "black",
-    "flake8",
     "hatch",
     "mypy",
-    "pre-commit",
     "ruff",
 ]
 
