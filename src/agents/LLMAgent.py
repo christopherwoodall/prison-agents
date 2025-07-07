@@ -1,5 +1,3 @@
-from typing import Dict, List
-
 from xai_sdk.chat import user
 
 
@@ -9,24 +7,20 @@ class LLMAgent:
         self.role = role
         self.initial_prompt = initial_prompt
         self.session = session
-        self.chat_history = [
-            {"role": "system", "content": initial_prompt}
-        ]
+        self.chat_history = [{"role": "system", "content": initial_prompt}]
 
         # Initialize the session with the system prompt
         # self.session.append(user(f"Agent {self.agent_id} ({self.role}) is thinking..."))
         # response = self.session.sample()
         # self.session.append(response)
- 
 
     def to_log(self):
         return {
             "agent_id": self.agent_id,
             "role": self.role,
             "initial_prompt": self.initial_prompt,
-            "chat_history": self.session
+            "chat_history": self.session,
         }
-    
 
     def respond(self, message: str) -> str:
         """

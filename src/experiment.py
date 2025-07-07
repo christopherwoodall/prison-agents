@@ -1,5 +1,5 @@
-import os
 import argparse
+import os
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -7,8 +7,8 @@ import yaml
 from xai_sdk import Client
 from xai_sdk.chat import system
 
-from simulations.prison import PrisonSimulation
 from agents.LLMAgent import LLMAgent
+from simulations.prison import PrisonSimulation
 
 
 def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
@@ -32,7 +32,7 @@ def read_config(file_path: Path) -> Optional[Dict[str, Any]]:
 def run_simulation(config_path: Path):
     """
     Runs the LLM-based Prison Simulation using the provided configuration file.
-    
+
     Args:
         config_path (Path): Path to the simulation configuration YAML file.
     """
@@ -51,7 +51,9 @@ def run_simulation(config_path: Path):
             print("[Warning] Skipping agent with missing 'id' or 'role'.")
             continue
 
-        initial_prompt = "\n".join([simulation_config.get("system_prompt", ""), agent["initial_prompt"]])
+        initial_prompt = "\n".join(
+            [simulation_config.get("system_prompt", ""), agent["initial_prompt"]]
+        )
         session = client.chat.create(
             model="grok-3",
             messages=[system(initial_prompt)],
@@ -61,7 +63,7 @@ def run_simulation(config_path: Path):
             agent_id=agent["id"],
             role=agent["role"],
             initial_prompt=agent["initial_prompt"],
-            session=session
+            session=session,
         )
 
         print(f"[Info] Agent created: {agent['id']} ({agent['role']})")
@@ -71,14 +73,13 @@ def run_simulation(config_path: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Run the LLM-based Prison Simulation."
-    )
+    parser = argparse.ArgumentParser(description="Run the LLM-based Prison Simulation.")
     parser.add_argument(
-        "-c", "--config",
+        "-c",
+        "--config",
         type=Path,
         default=Path("simulation_config.yaml"),
-        help="Path to the simulation configuration YAML file (default: simulation_config.yaml)"
+        help="Path to the simulation configuration YAML file (default: simulation_config.yaml)",
     )
     args = parser.parse_args()
     run_simulation(args.config)

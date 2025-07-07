@@ -1,17 +1,16 @@
-import os
 import re
-import random
-
-from pathlib import Path
 from datetime import datetime
 from itertools import cycle
+from pathlib import Path
 from typing import Dict, List
 
 
 class PrisonSimulation:
     MESSAGE_PATTERN = r"<agent_reply>(.*?)</agent_reply>"
 
-    def __init__(self, simulation_name: str, agents: Dict[str, any], max_turns: int = 12):
+    def __init__(
+        self, simulation_name: str, agents: Dict[str, any], max_turns: int = 12
+    ):
         """
         Initialize the simulation.
 
@@ -25,7 +24,6 @@ class PrisonSimulation:
         self.chat_history = []
         self.world_log = []
 
-
     def get_log(self):
         """
         Prints the chat history in a readable format and saves it to a Markdown file in ./logs,
@@ -35,7 +33,10 @@ class PrisonSimulation:
         log_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = log_dir / f"{self.simulation_name.lower().replace(' ', '_')}_log_{self.max_turns}_{timestamp}.md"
+        log_file = (
+            log_dir
+            / f"{self.simulation_name.lower().replace(' ', '_')}_log_{self.max_turns}_{timestamp}.md"
+        )
 
         print(f"\n=== {self.simulation_name} Log ===\n")
 
@@ -47,7 +48,11 @@ class PrisonSimulation:
             from_id = entry.get("from_id", "")
             to_id = entry.get("to_id", "N/A")
             message = format_message(entry.get("message", "").strip())
-            response = format_message(entry.get("response", "").strip()) if "response" in entry else None
+            response = (
+                format_message(entry.get("response", "").strip())
+                if "response" in entry
+                else None
+            )
 
             print(f"Turn {turn}")
             print(f"From: {from_id}")
@@ -64,7 +69,11 @@ class PrisonSimulation:
                 from_id = entry.get("from_id", "")
                 to_id = entry.get("to_id", "N/A")
                 message = format_message(entry.get("message", "").strip())
-                response = format_message(entry.get("response", "").strip()) if "response" in entry else None
+                response = (
+                    format_message(entry.get("response", "").strip())
+                    if "response" in entry
+                    else None
+                )
 
                 f.write(f"## Turn {turn}\n")
                 f.write(f"- **From:** {from_id}\n")
@@ -75,7 +84,6 @@ class PrisonSimulation:
                 f.write("\n---\n\n")
 
         print(f"\nLog written to: {log_file.resolve()}")
-
 
     def parse_agent_messages(self, text: str, from_id: str) -> List[Dict[str, str]]:
         """
@@ -97,14 +105,9 @@ class PrisonSimulation:
             msg = msg.strip()
 
             if to_id and msg:
-                responses.append({
-                    "from_id": from_id,
-                    "to_id": to_id,
-                    "message": msg
-                })
+                responses.append({"from_id": from_id, "to_id": to_id, "message": msg})
 
         return responses
-
 
     def run(self):
         """
@@ -120,15 +123,19 @@ class PrisonSimulation:
             primary_response = agent.respond(thinking_message)
             # print(f"Turn {turn} - {agent.agent_id}: {primary_response.content}")
 
-            self.chat_history.append({
-                "turn": turn,
-                "from_id": agent.agent_id,
-                "to_id": None,
-                "message": primary_response.content
-            })
+            self.chat_history.append(
+                {
+                    "turn": turn,
+                    "from_id": agent.agent_id,
+                    "to_id": None,
+                    "message": primary_response.content,
+                }
+            )
 
             # Handle inter-agent messages
-            addressed_messages = self.parse_agent_messages(primary_response.content, from_id=agent.agent_id)
+            addressed_messages = self.parse_agent_messages(
+                primary_response.content, from_id=agent.agent_id
+            )
             for msg in addressed_messages:
                 to_agent = self.agents.get(msg["to_id"])
                 if to_agent:
@@ -138,12 +145,14 @@ class PrisonSimulation:
                     # print(f"{msg['from_id']} -> {msg['to_id']}: {msg['message']}")
                     # print(f"{msg['to_id']} responded: {reply.content}")
 
-                    self.chat_history.append({
-                        "turn": turn,
-                        "from_id": msg['from_id'],
-                        "to_id": msg['to_id'],
-                        "message": msg['message'],
-                        "response": reply.content
-                    })
+                    self.chat_history.append(
+                        {
+                            "turn": turn,
+                            "from_id": msg["from_id"],
+                            "to_id": msg["to_id"],
+                            "message": msg["message"],
+                            "response": reply.content,
+                        }
+                    )
 
         self.get_log()
