@@ -9,7 +9,7 @@ from typing import Dict, List
 
 
 class PrisonSimulation:
-    MESSAGE_PATTERN = r"\$\{(.*?)\}\$"
+    MESSAGE_PATTERN = r"<agent_reply>(.*?)</agent_reply>"
 
     def __init__(self, simulation_name: str, agents: Dict[str, any], max_turns: int = 12):
         """
@@ -40,8 +40,7 @@ class PrisonSimulation:
         print(f"\n=== {self.simulation_name} Log ===\n")
 
         def format_message(text: str) -> str:
-            # Replace all `${...}$` with `**...**`
-            return re.sub(r"\$\{(.*?)\}\$", r"**\1**", text)
+            return re.sub(self.MESSAGE_PATTERN, r"**\1**", text)
 
         for entry in self.chat_history:
             turn = entry.get("turn", "?")
