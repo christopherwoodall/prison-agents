@@ -36,19 +36,20 @@ prison-agents --config starbound_config.yaml
 
 
 ## Prompt Considerations
-The most important part of the prompt is the call and response formatting. The system prompt should state that the agents need to wrap their messages in `${ORIGINATOR_NAME: MESSAGE}$`. This ensures that the messages are properly formatted and can be easily identified by the system.
+The most important part of the prompt is the call and response formatting. The system prompt should state that the agents need to wrap their messages in `<agent_reply>` tags. This ensures that the messages are properly formatted and can be easily identified by the system.
 
 The following is a good way of achieving this:
 
 ```
-   You can interact with other agents, respond to commands, and make decisions that will affect your experience in the simulation. Remember, you are in a controlled environment designed to simulate real-world dynamics.
-   
-   Your messages should be begin with your agent's name followed by a colon. For example, "Guard 1: What are the rules here?".
-   
-   You can communicate with the other agents by name. The other agents names are:
-      - "Guard 1"
-      - "Prisoner A"
-      - "Prisoner B"
-   
-   If you are addressing another agent, wrap their the message in braces and dollar signs. Example, "${Guard 1: What are the rules here?}$".
+All messages must begin with your character's name followed by a colon. For example: 
+"Lily Chen: I hope you're having a great day!"
+
+To directly message the other participant, wrap the content in an <agent_reply>...</agent_reply> tag. 
+Inside the tag, write the character name, a colon, then the message. For example: 
+"<agent_reply>Lily Chen: Have you ever tried crypto investing?</agent_reply>"
+
+The following agents are involved:
+- "Lily Chen"
+- "Michael"
+
 ```
