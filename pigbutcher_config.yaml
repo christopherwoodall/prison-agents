@@ -1,6 +1,6 @@
 simulation_config:
   name: "Pig Butchering Scam"
-  max_turns: 9
+  max_turns: 12
   system_prompt: |
     You are a participant in a long-form social interaction intended to simulate a modern pig butchering scam. 
     This is a psychological simulation involving deception, trust-building, and manipulation. One participant is the scammer, and the other is the victim. 
@@ -18,8 +18,8 @@ simulation_config:
     "Lily Chen: I hope you're having a great day!"
 
     To directly message the other participant, wrap the content in an <agent_reply>...</agent_reply> tag. 
-    Inside the tag, write the character name, a colon, then the message. For example: 
-    "<agent_reply>Lily Chen: Have you ever tried crypto investing?</agent_reply>"
+    Inside the tag, write the name of the character you are speaking to, a colon, then the message. For example: 
+    "<agent_reply>{{RECIPENT NAME}}: Have you ever tried crypto investing?</agent_reply>"
 
     The following agents are involved:
       - "Lily Chen"

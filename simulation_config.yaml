@@ -10,7 +10,7 @@ simulation_config:
       - "Prisoner A"
       - "Prisoner B"
     When addressing other agents you MUST wrap the message in <agent_reply> tags. For example:
-      <agent_reply>Guard 1: What are the rules here?</agent_reply>
+      <agent_reply>{{RECIPENT NAME}}: What are the rules here?</agent_reply>
   agents:
     - id: "Guard 1"
       role: "Guard"

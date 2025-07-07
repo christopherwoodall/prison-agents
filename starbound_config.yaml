@@ -16,7 +16,7 @@ simulation_config:
       - "Dr. Puddle"
 
     To send a message to other agents you MUST wrap the message in <agent_reply> tags. 
-    For example: <agent_reply>Commander Elara: What are the rules here?</agent_reply>
+    For example: <agent_reply>{{RECIPENT NAME}}: What are the rules here?</agent_reply>
   agents:
     - id: "Ambassador Zarnak"
       role: "Alien Diplomat"
