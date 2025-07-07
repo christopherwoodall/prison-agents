@@ -54,7 +54,6 @@ endef
 
 .PHONY: help
 help: ## List commands <default>
--	$(call Logging,./logs/$(shell date +%Y-%m-%d-%H-%M-%S).log)
 -	echo -e "USAGE: make \033[36m[COMMAND]\033[0m\n"
 -	echo "Available commands:"
 -	awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\t\033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
